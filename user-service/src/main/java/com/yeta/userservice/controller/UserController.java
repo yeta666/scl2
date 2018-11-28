@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Random;
+
 /**
  * User相关接口
  * @author YETA
@@ -19,7 +21,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping(value = "/hello")
-    public String hello() {
+    public String hello() throws InterruptedException {
         return userService.hello();
     }
 

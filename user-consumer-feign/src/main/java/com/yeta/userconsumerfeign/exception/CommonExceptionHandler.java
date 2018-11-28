@@ -1,6 +1,6 @@
-package com.yeta.userconsumerribbon.exception;
+package com.yeta.userconsumerfeign.exception;
 
-import com.yeta.userconsumerribbon.util.CommonResponse;
+import com.yeta.userconsumerfeign.util.CommonResponse;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
