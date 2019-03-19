@@ -21,12 +21,12 @@ public class UserController {
     private UserService userService;
 
     @GetMapping(value = "/hello")
-    public String hello() throws InterruptedException {
+    public String hello() {
         return userService.hello();
     }
 
     @GetMapping(value = "/findById")
-    public User findById(@RequestParam(value = "id") Integer id) throws InterruptedException {
+    public User findById(@RequestParam(value = "id") Integer id) {
         return userService.findById(id);
     }
 }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
  * @date 2018/11/28/10:23
  */
 @FeignClient(name = "user-service", fallback = UserServiceFallback.class)        //指定服务名来绑定服务，指定服务降级
-public interface UserSerice {
+public interface UserService {
 
     @GetMapping("/hello")
     String hello();

@@ -8,6 +8,7 @@ import org.springframework.cloud.client.serviceregistry.Registration;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.Random;
 
 /**
  * User相关逻辑处理
@@ -27,20 +28,28 @@ public class UserService {
     private UserRepository userRepository;
 
     public String hello() {
+        try {
+            int sleepTime = new Random().nextInt(3000);
+            System.out.println("before sleep " + System.currentTimeMillis() + " sleep time " + sleepTime);
+            Thread.sleep(sleepTime);
+            System.out.println("after sleep " + System.currentTimeMillis());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return "hello, from " + registration.getServiceId() + " " + registration.getPort();
     }
 
-    public User findById(Integer id) throws InterruptedException {
-        System.out.println(System.currentTimeMillis());     //证明是异步执行
-        Thread.sleep(2000);
-        Optional<User> userOptional = userRepository.findById(id);
-        User user;
-        if (userOptional.isPresent()) {
-            user = userOptional.get();
-        } else {
-            user = new User();
+    public User findById(Integer id) {
+        try {
+            Optional<User> userOptional = userRepository.findById(id);
+            User user = userOptional.orElseGet(User::new);
+            System.out.println("user-service before sleep " + System.currentTimeMillis());
+            Thread.sleep(2000);
+            System.out.println("user-service after sleep " + System.currentTimeMillis());
+            return user;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-        System.out.println(System.currentTimeMillis());     //证明是异步执行
-        return user;
+        return null;
     }
 }

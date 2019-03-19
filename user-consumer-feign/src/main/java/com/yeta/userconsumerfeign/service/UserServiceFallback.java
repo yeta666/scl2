@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * @date 2018/11/28/11:47
  */
 @Component
-public class UserServiceFallback implements UserSerice {
+public class UserServiceFallback implements UserService {
 
     @Override
     public String hello() {

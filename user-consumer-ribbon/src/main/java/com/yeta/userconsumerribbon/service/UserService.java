@@ -1,14 +1,26 @@
 package com.yeta.userconsumerribbon.service;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.ObservableExecutionMode;
+import com.netflix.hystrix.contrib.javanica.cache.annotation.CacheKey;
+import com.netflix.hystrix.contrib.javanica.cache.annotation.CacheRemove;
+import com.netflix.hystrix.contrib.javanica.cache.annotation.CacheResult;
 import com.netflix.hystrix.contrib.javanica.command.AsyncResult;
 import com.yeta.userconsumerribbon.exception.CommonException;
 import com.yeta.userconsumerribbon.model.User;
 import com.yeta.userconsumerribbon.util.CommonResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
+import rx.Observable;
+import rx.Subscriber;
 
+import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
@@ -65,10 +77,16 @@ public class UserService {
      * @param id
      * @return
      */
+    @CacheResult(cacheKeyMethod = "findByIdCacheKey")
     @HystrixCommand
     public CommonResponse findById(Integer id) {
-        User user = restTemplate.getForObject("http://USER-SERVICE/users/{1}", User.class, id);
+        User user = restTemplate.getForObject("http://USER-SERVICE/findById?id={1}", User.class, id);
+        System.out.println("调用user-service后时间 " + System.currentTimeMillis());     //证明是同步执行
         return new CommonResponse(CommonResponse.CODE1, user, CommonResponse.MESSAGE1);
+    }
+
+    private String findByIdCacheKey(Integer id) {
+        return id.toString();
     }
 
     /**
@@ -77,7 +95,8 @@ public class UserService {
      * @param id
      * @return
      */
-    public CommonResponse findByIdAsync(Integer id) throws ExecutionException, InterruptedException {
+    @HystrixCommand(commandKey = "findUserById", groupKey = "UserGroup", threadPoolKey = "findUserByIdThread")
+    public CommonResponse findByIdAsync(Integer id) {
         Future<User> userFuture = new AsyncResult<User>() {
             @Override
             public User invoke() {
@@ -89,8 +108,37 @@ public class UserService {
                 return invoke();
             }
         };
-        System.out.println(System.currentTimeMillis());     //证明是异步执行
-        return new CommonResponse(CommonResponse.CODE1, userFuture.get(), CommonResponse.MESSAGE1);
+        System.out.println("调用user-service后时间 " + System.currentTimeMillis());     //证明是异步执行
+        try {
+            return new CommonResponse(CommonResponse.CODE1, userFuture.get(), CommonResponse.MESSAGE1);
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+            return new CommonResponse(CommonResponse.CODE3, e.getMessage(), CommonResponse.MESSAGE3);
+        }
+    }
+
+    /**
+     * 根据id查找
+     * 响应式执行方式
+     * @param id
+     * @return
+     */
+    @HystrixCommand(observableExecutionMode = ObservableExecutionMode.EAGER)        //使用observe()执行方法
+    //@HystrixCommand(observableExecutionMode = ObservableExecutionMode.LAZY)        //使用toObservable()执行方法
+    public CommonResponse findByIdObservable(Integer id) {
+        Observable<User> userObservable = Observable.create(subscriber -> {
+            try {
+                if (!subscriber.isUnsubscribed()) {
+                    User user = restTemplate.getForObject("http://USER-SERVICE/findById?id={1}", User.class, id);
+                    subscriber.onNext(user);
+                    subscriber.onCompleted();
+                }
+            } catch (Exception e) {
+                subscriber.onError(e);
+            }
+        });
+        userObservable.forEach(System.out::println);
+        return null;
     }
 
     /**
@@ -98,6 +146,7 @@ public class UserService {
      * @param user
      * @return
      */
+    @CacheRemove(commandKey = "findById")
     @HystrixCommand
     public CommonResponse save(User user) {
         User sUser = restTemplate.postForObject("http://USER-SERVICE/users", user, User.class);

@@ -35,9 +35,14 @@ public class UserController {
         return userService.findById(id);
     }
 
-    @GetMapping(value = "/findByIdAsync")
-    public CommonResponse findByIdAsync(@RequestParam(value = "id") Integer id) throws ExecutionException, InterruptedException {
+    @GetMapping(value = "/users/async/{id}")
+    public CommonResponse findByIdAsync(@PathVariable(value = "id") Integer id) {
         return userService.findByIdAsync(id);
+    }
+
+    @GetMapping(value = "/users/observable/{id}")
+    public CommonResponse findByIdObservable(@PathVariable(value = "id") Integer id) {
+        return userService.findByIdObservable(id);
     }
 
     @PostMapping(value = "/users")
