@@ -19,3 +19,6 @@ spring cloud微服务学习
 
 【config-server】分布式配置中心
 
+【config-client】分布式配置中心测试客户端
+
+【config】Git仓库管理的配置
