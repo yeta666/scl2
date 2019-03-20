@@ -18,6 +18,9 @@ public class TestController {
     @Value("${from}")
     private String from;
 
+    @Value("${hello}")
+    private String hello;
+
     @Autowired
     private Environment environment;
 
@@ -29,5 +32,10 @@ public class TestController {
     @GetMapping(value = "/from1")
     public Object from1() {
         return environment.getProperty("from", "undefined");
+    }
+
+    @GetMapping(value = "/hello")
+    public Object hello() {
+        return hello;
     }
 }
