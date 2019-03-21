@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class AccessFilter extends ZuulFilter {
 
-    private static Logger log = LoggerFactory.getLogger(ZuulFilter.class);
+    private static Logger log = LoggerFactory.getLogger(AccessFilter.class);
 
     /**
      * 过滤器的类型

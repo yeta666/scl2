@@ -21,4 +21,7 @@ spring cloud微服务学习
 
 【config】Git仓库管理的配置
 
-【api-gateway-dynamic】动态API网关服务（动态配置）
+【filter】API网关服务动态过滤过滤器
+
+【api-gateway-dynamic】动态API网关服务（动态路由、动态过滤）
+
