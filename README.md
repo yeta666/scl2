@@ -15,10 +15,10 @@ spring cloud微服务学习
 
 【api-gateway】API网关服务（本地配置）
 
-【api-gateway-dynamic-route】API网关服务（从配置中心获取配置）
-
 【config-server】分布式配置中心
 
 【config-client】分布式配置中心测试客户端
 
 【config】Git仓库管理的配置
+
+【api-gateway-dynamic】动态API网关服务（动态配置）

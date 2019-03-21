@@ -1,4 +1,4 @@
-package com.yeta.apigatewaydynamicroute.controller;
+package com.yeta.apigatewaydynamic.controller;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +27,7 @@ public class ErrorHandlerController implements ErrorController {
         result.put("status_code", request.getAttribute("javax.servlet.error.status_code"));
         StringBuffer sb = new StringBuffer(request.getAttribute("javax.servlet.error.message").toString());
         Exception exception = (Exception) request.getAttribute("javax.servlet.error.exception");
-        while (exception.getCause() != null) {
+        while (exception != null && exception.getCause() != null) {
             sb.append("  ").append(exception.getCause().getMessage());
             exception = (Exception) exception.getCause();
         }
