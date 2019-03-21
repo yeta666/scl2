@@ -25,3 +25,7 @@ spring cloud微服务学习
 
 【api-gateway-dynamic】动态API网关服务（动态路由、动态过滤）
 
+【rabbitmq-hello】Spring Boot整合RabbitMQ实例
+
+
+
