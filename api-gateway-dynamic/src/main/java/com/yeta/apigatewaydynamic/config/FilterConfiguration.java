@@ -14,6 +14,9 @@ public class FilterConfiguration {
 
     private Integer interval;
 
+    public FilterConfiguration() {
+    }
+
     public String getRoot() {
         return root;
     }
