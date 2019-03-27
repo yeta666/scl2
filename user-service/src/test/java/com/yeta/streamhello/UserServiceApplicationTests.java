@@ -1,4 +1,4 @@
-package com.yeta.userservice;
+package com.yeta.streamhello;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

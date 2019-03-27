@@ -27,5 +27,7 @@ spring cloud微服务学习
 
 【rabbitmq-hello】Spring Boot整合RabbitMQ实例
 
+【stream-hello】Spring Boot整合Stream实例
+
 
 

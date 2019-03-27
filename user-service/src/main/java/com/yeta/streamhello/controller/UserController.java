@@ -1,13 +1,11 @@
-package com.yeta.userservice.controller;
+package com.yeta.streamhello.controller;
 
-import com.yeta.userservice.model.User;
-import com.yeta.userservice.service.UserService;
+import com.yeta.streamhello.model.User;
+import com.yeta.streamhello.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Random;
 
 /**
  * User相关接口

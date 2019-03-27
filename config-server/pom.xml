@@ -47,9 +47,14 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         <!-- bus-amqp -->
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bus-amqp</artifactId>
+        </dependency>-->
+        <!-- bus-kafka -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bus-kafka</artifactId>
         </dependency>
     </dependencies>
 

@@ -1,7 +1,7 @@
-package com.yeta.userservice.service;
+package com.yeta.streamhello.service;
 
-import com.yeta.userservice.model.User;
-import com.yeta.userservice.repository.UserRepository;
+import com.yeta.streamhello.model.User;
+import com.yeta.streamhello.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.serviceregistry.Registration;

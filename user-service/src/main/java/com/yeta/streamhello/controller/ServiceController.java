@@ -1,4 +1,4 @@
-package com.yeta.userservice.controller;
+package com.yeta.streamhello.controller;
 
 import com.netflix.discovery.DiscoveryManager;
 import org.springframework.beans.factory.annotation.Autowired;

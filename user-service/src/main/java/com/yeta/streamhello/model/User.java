@@ -1,4 +1,4 @@
-package com.yeta.userservice.model;
+package com.yeta.streamhello.model;
 
 import javax.persistence.*;
 

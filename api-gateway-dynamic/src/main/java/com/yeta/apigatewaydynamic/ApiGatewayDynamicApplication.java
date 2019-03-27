@@ -22,7 +22,7 @@ public class ApiGatewayDynamicApplication {
     }
 
     /**
-     * 创建类似/v1/userservice/**的路由匹配规则
+     * 创建类似/v1/streamhello/**的路由匹配规则
      * @return
      */
     @Bean

@@ -1,6 +1,6 @@
-package com.yeta.userservice.repository;
+package com.yeta.streamhello.repository;
 
-import com.yeta.userservice.model.User;
+import com.yeta.streamhello.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
