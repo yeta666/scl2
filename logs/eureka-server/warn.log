@@ -1,0 +1,8 @@
+2019-03-28 16:56:09.184 [localhost-startStop-1] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2019-03-28 16:56:13.097 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2019-03-28 16:56:14.216 [main] WARN  com.netflix.eureka.cluster.PeerEurekaNodes - The replica size seems to be empty. Check the route 53 DNS Registry
+2019-03-28 16:58:27.302 [localhost-startStop-1] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2019-03-28 16:58:31.234 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2019-03-28 16:58:32.365 [main] WARN  com.netflix.eureka.cluster.PeerEurekaNodes - The replica size seems to be empty. Check the route 53 DNS Registry
+2019-03-28 17:08:32.367 [Eureka-PeerNodesUpdater] WARN  com.netflix.eureka.cluster.PeerEurekaNodes - The replica size seems to be empty. Check the route 53 DNS Registry
+2019-03-28 17:13:32.504 [Eureka-EvictionTimer] WARN  c.netflix.eureka.registry.AbstractInstanceRegistry - DS: Registry: expired lease for USER-CONSUMER-FEIGN/localhost:user-consumer-feign:9001

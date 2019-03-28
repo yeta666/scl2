@@ -10,12 +10,12 @@ import org.springframework.context.annotation.Scope;
  * @author YETA
  * @date 2019/03/15/16:46
  */
-@Configuration
+@Configuration()
 public class DisableHystrixConfiguration {
 
-    @Bean
+    /*@Bean
     @Scope("prototype")
     public Feign.Builder feignBuilder() {
         return Feign.builder();
-    }
+    }*/
 }
